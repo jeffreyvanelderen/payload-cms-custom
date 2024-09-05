@@ -52,6 +52,7 @@ export interface Role {
 export interface Post {
   id: number;
   userId?: (number | User)[] | null;
+  title?: string | null;
   content?:
     | {
         [k: string]: unknown;
@@ -59,14 +60,6 @@ export interface Post {
     | null;
   updatedAt: string;
   createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -74,15 +67,10 @@ export interface Post {
  */
 export interface PayloadPreference {
   id: number;
-  user:
-    | {
-        relationTo: 'users';
-        value: number | User;
-      }
-    | {
-        relationTo: 'posts';
-        value: number | Post;
-      };
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
   key?: string | null;
   value?:
     | {

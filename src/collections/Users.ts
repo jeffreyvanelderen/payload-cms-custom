@@ -2,7 +2,6 @@ import { CollectionConfig } from "payload/types";
 import { isAdminOrSelf } from "../access/isAdminOrSelf";
 import Roles from "./Roles";
 import { isAdmin } from "../access/isAdmin";
-import { Role } from "../models/enums/Role";
 
 const Users: CollectionConfig = {
   // Unique, URL-friendly string that will act as an identifier for this Collection.
@@ -36,7 +35,7 @@ const Users: CollectionConfig = {
       relationTo: Roles.slug,
       hasMany: false,
       index: true,
-      defaultValue: () => 2,
+      // defaultValue: () => 2,
       // hidden: true,
     },
   ],

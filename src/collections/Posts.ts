@@ -15,8 +15,11 @@ const Posts: CollectionConfig = {
   // Provide access control functions to define exactly who should be able to do what with Documents in this Collection - https://payloadcms.com/docs/access-control/overview/#collections
   access: {
     create: isEditorOrAdmin,
-    read: () => true,
-    update: isEditorOrAdmin,
+    read: ({ req: { user } }) => {
+      console.log(`for read posts - user.role`, user.role?.value);
+      return true;
+    },
+    update: isAdminOrSelf,
     delete: isAdminOrSelf,
   },
   // Singular and plural labels for use in identifying this Collection throughout Payload. Auto-generated from slug if not defined.

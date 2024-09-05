@@ -7,7 +7,7 @@ const Roles: CollectionConfig = {
   labels: { singular: "Role", plural: "Roles" },
   access: {
     create: () => false,
-    read: isAdmin,
+    read: () => true,
     update: () => false,
     delete: () => false,
   },
