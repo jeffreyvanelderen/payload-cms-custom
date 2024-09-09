@@ -6,10 +6,10 @@ const Roles: CollectionConfig = {
   admin: { useAsTitle: "name" },
   labels: { singular: "Role", plural: "Roles" },
   access: {
-    create: () => false,
+    create: isAdmin,
     read: () => true,
-    update: () => false,
-    delete: () => false,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     // These 'populate' the fields of the Role type
@@ -21,9 +21,6 @@ const Roles: CollectionConfig = {
     {
       name: "value",
       type: "text",
-      admin: {
-        hidden: true,
-      },
     },
   ],
 };
